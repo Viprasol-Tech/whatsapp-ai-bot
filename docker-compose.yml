@@ -1,0 +1,20 @@
+# Part of WhatsApp AI Bot by Viprasol Tech Private Limited (https://viprasol.com).
+services:
+  whatsapp-ai-bot:
+    build: .
+    image: viprasol/whatsapp-ai-bot:0.1.0
+    ports:
+      - "8000:8000"
+    environment:
+      # Offline defaults — copy .env.example to .env and edit to go live.
+      WAB_VERIFY_TOKEN: ${WAB_VERIFY_TOKEN:-dev-verify-token}
+      WAB_USE_REAL_WHATSAPP: ${WAB_USE_REAL_WHATSAPP:-false}
+      WAB_WHATSAPP_ACCESS_TOKEN: ${WAB_WHATSAPP_ACCESS_TOKEN:-}
+      WAB_WHATSAPP_PHONE_NUMBER_ID: ${WAB_WHATSAPP_PHONE_NUMBER_ID:-}
+      WAB_BOT_NAME: ${WAB_BOT_NAME:-Viprasol Assistant}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/health').status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
