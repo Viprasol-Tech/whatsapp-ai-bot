@@ -89,8 +89,8 @@ reply = router.handle(
     )
 )
 
-print(reply.text)          # "Hi Ada, Hello! I'm Viprasol Assistant. How can I help you today?"
-print(whatsapp.sent)       # [OutboundMessage(to_number='15550001111', text='Hi Ada, ...')]
+print(reply.text)  # "Hi Ada, Hello! I'm Viprasol Assistant. How can I help you today?"
+print(whatsapp.sent)  # [OutboundMessage(to_number='15550001111', text='Hi Ada, ...')]
 ```
 
 To send through the real WhatsApp Cloud API, set `WAB_WHATSAPP_ACCESS_TOKEN`,
